@@ -1,9 +1,8 @@
 package server
 
 import (
-	"crypto/sha256"
-
 	"github.com/iotaledger/autopeering-sim/peer"
+	"golang.org/x/crypto/blake2b"
 )
 
 // MType is the type of message type enum.
@@ -36,6 +35,6 @@ func (f HandlerFunc) HandleMessage(s *Server, fromAddr string, fromID peer.ID, f
 
 // PacketHash returns the hash of a packet
 func PacketHash(data []byte) []byte {
-	sum := sha256.Sum256(data)
+	sum := blake2b.Sum256(data)
 	return sum[:]
 }

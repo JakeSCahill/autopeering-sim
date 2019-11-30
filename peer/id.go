@@ -5,6 +5,8 @@ import (
 	"encoding/hex"
 	"fmt"
 	"strings"
+
+	"golang.org/x/crypto/blake2b"
 )
 
 // ID is a unique identifier for each peer.
@@ -36,5 +38,5 @@ func ParseID(s string) (ID, error) {
 
 // ID computes the ID corresponding to the given public key.
 func (k PublicKey) ID() ID {
-	return sha256.Sum256(k)
+	return blake2b.Sum256(k)
 }
